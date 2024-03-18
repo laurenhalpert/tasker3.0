@@ -9,12 +9,12 @@ import CompletionStatusBar from "./CompletionStatusBar";
 
 function App() {
   
-  const [tasks, SetTasks] = useState([])
+  const [tasks, setTasks] = useState([])
 
   useEffect(()=>{
-    fetch("../tasks.json")
+    fetch("http://127.0.0.1:5000/api/")
     .then(r=>r.json())
-    .then((tasks)=>console.log(tasks))
+    .then((tasks)=>setTasks(tasks))
   })
 
   
