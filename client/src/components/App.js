@@ -15,14 +15,21 @@ function App() {
     fetch("http://127.0.0.1:5000/api/")
     .then(r=>r.json())
     .then((tasks)=>setTasks(tasks))
-  })
+  }, [])
+
+  function handleFavorite(taskObj){
+    let mappedTasks = tasks.map((task)=>task.id === taskObj.id? taskObj: task)
+    setTasks(mappedTasks)
+   
+  }
+
 
   
   return (
     <div className="App">
       <Header />
-      <TaskList tasks={tasks}/>
       <CompletionStatusBar />
+      <TaskList tasks={tasks} onFavorite={handleFavorite}/>
     </div>
   );
 }
