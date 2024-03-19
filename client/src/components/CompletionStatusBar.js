@@ -1,10 +1,13 @@
 import React from "react";
 
-function CompletionStatusBar (){
+function CompletionStatusBar ({ progressStatus }){
+   
+    
+    
     return(
         <div className="completionStatusBar">
             <label htmlFor="file" className="progressBar">Completion Progress: </label>
-            <progress id="file" value="32" max="100"> 32% </progress>
+            <progress id="file" value={progressStatus} max="100">{progressStatus} %</progress>
         </div>
     )
 }

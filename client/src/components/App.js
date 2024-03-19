@@ -10,12 +10,19 @@ import CompletionStatusBar from "./CompletionStatusBar";
 function App() {
   
   const [tasks, setTasks] = useState([])
+  const [progressStatus, setProgressStatus] = useState(0)
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5000/api/")
     .then(r=>r.json())
-    .then((tasks)=>setTasks(tasks))
+    .then((tasks)=>{
+      let completedTasks= tasks.filter((task)=>task.status==="Completed")
+      let percentCompleted = (completedTasks.length/tasks.length)*100
+      setProgressStatus(percentCompleted)
+      setTasks(tasks)
+    })
   }, [])
+  
 
   function handleFavorite(taskObj){
     let mappedTasks = tasks.map((task)=>task.id === taskObj.id? taskObj: task)
@@ -23,20 +30,27 @@ function App() {
    
   }
 
-  function handleDelete(taskObj){
-    let filteredTasks = tasks.filter((task)=>task.id !== taskObj.id)
+  function handleDelete(task_id){
+    let filteredTasks = tasks.filter((task)=>task.id !== task_id)
     setTasks(filteredTasks )
+    let completedTasks= filteredTasks.filter((task)=>task.status === "Completed")
+    let percentCompleted = (completedTasks.length/filteredTasks.length)*100
+    setProgressStatus(percentCompleted)
+  
   }
 
   function handleComplete(taskObj){
     let mappedTasks = tasks.map((task)=>task.id === taskObj.id? taskObj: task)
-    setTasks(mappedTasks)
+    setTasks(()=>mappedTasks)
+    let completedTasks= mappedTasks.filter((task)=>task.status === "Completed")
+    let percentCompleted = (completedTasks.length/mappedTasks.length)*100
+    setProgressStatus(percentCompleted)
   }
   
   return (
     <div className="App">
       <Header />
-      <CompletionStatusBar />
+      <CompletionStatusBar progressStatus={progressStatus}/>
       <TaskList tasks={tasks} onFavorite={handleFavorite} onDelete={handleDelete} onComplete={handleComplete} />
     </div>
   );

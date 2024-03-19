@@ -29,9 +29,7 @@ function Task({ task, onFavorite, onDelete, onComplete }){
             }
         })
         
-        .then(task=>{
-            onDelete(task)
-        })
+        .then(()=>onDelete(id))
     }
 
     function handleComplete(e, id){
