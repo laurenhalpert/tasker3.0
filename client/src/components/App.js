@@ -23,13 +23,21 @@ function App() {
    
   }
 
+  function handleDelete(taskObj){
+    let filteredTasks = tasks.filter((task)=>task.id !== taskObj.id)
+    setTasks(filteredTasks )
+  }
 
+  function handleComplete(taskObj){
+    let mappedTasks = tasks.map((task)=>task.id === taskObj.id? taskObj: task)
+    setTasks(mappedTasks)
+  }
   
   return (
     <div className="App">
       <Header />
       <CompletionStatusBar />
-      <TaskList tasks={tasks} onFavorite={handleFavorite}/>
+      <TaskList tasks={tasks} onFavorite={handleFavorite} onDelete={handleDelete} onComplete={handleComplete} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "./Task";
 
-function TaskList ({ tasks, onFavorite }){
+function TaskList ({ tasks, onFavorite, onDelete, onComplete }){
 
     
     return(
@@ -17,7 +17,7 @@ function TaskList ({ tasks, onFavorite }){
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map((task)=><Task key={task.id} task={task} onFavorite={onFavorite}/>)}
+                    {tasks.map((task)=><Task key={task.id} task={task} onFavorite={onFavorite} onDelete={onDelete} onComplete={onComplete} />)}
                 </tbody>
                
             </table>
