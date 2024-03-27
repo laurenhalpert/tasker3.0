@@ -123,3 +123,8 @@ button {
 #newTaskButton {
   margin-left: 47%;
 }
+
+.count, .filters, .newTaskForm{
+  text-align: center;
+}
+

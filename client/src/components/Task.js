@@ -1,6 +1,7 @@
 import React from "react";
+import NewTaskForm from "./NewTaskForm";
 
-function Task({ task, onFavorite, onDelete, onComplete }){
+function Task({ task, onFavorite, onDelete, onComplete, setAction, setClicking, onEdit }){
     function handleClick(e, id){
         console.log(e)
         console.log(id)
@@ -44,9 +45,17 @@ function Task({ task, onFavorite, onDelete, onComplete }){
         .then(task=>onComplete(task))
     }
 
+    function handleEdit(e, id){
+        setAction("PATCH")
+        setClicking()
+        onEdit(task)
+
+    }
+
     return(
+       
         <tr className="taskCard">
-            
+        
             <td>
                 <p onClick={(e, id)=> handleClick(e, task.id)}>{task.favorite? "★":"☆"}</p>
             </td>
@@ -55,11 +64,14 @@ function Task({ task, onFavorite, onDelete, onComplete }){
             <td>{task.status}</td>
             <td>
                 <button className="completeButton" onClick={(e, id)=>handleComplete(e, task.id)}>&#x2713;</button>
-                <button className="editButton">&#9999;</button>
+                <button className="editButton" onClick={(e, id)=>handleEdit(e, task.id)}>&#9999;</button>
                 <button className="deleteButton" onClick={(e, id)=> handleDelete(e, task.id)}>&#128465;</button>
             </td>
         
         </tr>
+            
+       
+        
     )
 }
 
