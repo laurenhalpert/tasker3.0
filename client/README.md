@@ -4,6 +4,10 @@
 
 Tasker is a React app with a Python backend that allows the end user to track their todo list
 
+## Video Walkthrough
+
+https://youtu.be/y0ezgLk-4Go
+
 ## Features
 
 ### List View/Progress View
