@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-function ToggleSwitch(){
-    const [isDarkMode, setIsDarkMode] = useState("off")
+function ToggleSwitch({ progressView, onToggle }){
+    
 
     function handleChange(e){
-        isDarkMode === "off"? setIsDarkMode("on"): setIsDarkMode("off")
+        progressView === "off"? onToggle("on"): onToggle("off")
     }
 
     return(
         <span className="toggleSwitch">
-            <label id="label" htmlFor="switchLabel">Dark Mode</label>
+            <label id="label" htmlFor="switchLabel">List View</label>
             <label id="switchLabel" className="switch">
-                <input id="switch" type="checkbox" onChange={handleChange} value={isDarkMode} />
+                <input id="switch" type="checkbox" onChange={handleChange} value={progressView} />
                 <span className="slider round"/>
             </label>
         </span>

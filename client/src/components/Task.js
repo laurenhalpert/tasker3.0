@@ -3,9 +3,7 @@ import NewTaskForm from "./NewTaskForm";
 
 function Task({ task, onFavorite, onDelete, onComplete, setAction, setClicking, onEdit }){
     function handleClick(e, id){
-        console.log(e)
-        console.log(id)
-        console.log(task)
+        
         fetch(`http://127.0.0.1:5000/api/favorite/${id}`, {
             method: "PATCH",
             headers: {

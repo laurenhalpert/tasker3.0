@@ -12,6 +12,8 @@ function App() {
   
   const [tasks, setTasks] = useState([])
   const [progressStatus, setProgressStatus] = useState(0)
+  const [filters, setFilters] = useState([]);
+  const [progressView, setProgressView] = useState("off")
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5000/api/")
@@ -20,9 +22,23 @@ function App() {
       let completedTasks= tasks.filter((task)=>task.status==="Completed")
       let percentCompleted = (completedTasks.length/tasks.length)*100
       setProgressStatus(percentCompleted)
-      setTasks(tasks)
+      if (filters.length !== 0 && !filters.includes("all") && filters.includes("favorites")){
+      
+        let filteredTasks = tasks.filter ((task)=>filters.includes(task.status) || task.favorite===true)
+        setTasks(filteredTasks)
+        
+      } else if(filters.length !==0 && !filters.includes("all")) {
+        let filteredTasks = tasks.filter((task)=>filters.includes(task.status))
+        setTasks(filteredTasks)
+        
+      } else {
+       
+        setTasks(tasks)
+      }
+     
+      
     })
-  }, [])
+  }, [filters])
   
 
   function handleFavorite(taskObj){
@@ -63,14 +79,29 @@ function App() {
     setProgressStatus(percentCompleted)
 
   }
-  
+
+  function handleFilterChange(filterStr, bool){
+    if (bool){
+      setFilters([...filters, filterStr])
+    } else {
+      let filteredFilters = filters.filter((val)=>val!==filterStr)
+      setFilters(filteredFilters)
+    }
+
+  }
+
+  function handleToggle(val){
+    setProgressView(()=>val)
+  }
+ 
   return (
     <div className="App">
-      <Header />
+      <Header progressView={progressView} onToggle={handleToggle} />
       <CompletionStatusBar progressStatus={progressStatus}/>
       <h2 className='count'>Number of Tasks: {tasks.length}</h2>
-      <Filters />
-      <TaskList tasks={tasks} onFavorite={handleFavorite} onDelete={handleDelete} onComplete={handleComplete} onAddTask={handleAddTask} onEditTask={handleEditTask} />
+      {progressView === "off"? <Filters onFilterChange={handleFilterChange} />: null}
+      {/* <Filters onFilterChange={handleFilterChange} /> */}
+      {progressView==="off"? <TaskList tasks={tasks} onFavorite={handleFavorite} onDelete={handleDelete} onComplete={handleComplete} onAddTask={handleAddTask} onEditTask={handleEditTask} />: null}
     </div>
   );
 }

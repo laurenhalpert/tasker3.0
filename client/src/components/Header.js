@@ -1,12 +1,12 @@
 import React from 'react';
 import ToggleSwitch from './ToggleSwitch';
 
-function Header (){
+function Header ({ progressView, onToggle }){
 
     return(
         <header className="header">
             <h1 id="siteTitle">Tasker</h1>
-            <ToggleSwitch />
+            <ToggleSwitch progressView={progressView} onToggle={onToggle}/>
         </header>
     )
 }
