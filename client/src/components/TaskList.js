@@ -22,7 +22,7 @@ function TaskList ({ tasks, onFavorite, onDelete, onComplete, onAddTask, onEditT
     
     return(
         <div className="taskList">
-            <table>
+            <table className="listView">
                 <thead>
                     <tr>
                         <th></th>

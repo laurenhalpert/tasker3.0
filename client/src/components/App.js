@@ -4,6 +4,7 @@ import Header from './Header';
 import TaskList from './TaskList';
 import CompletionStatusBar from "./CompletionStatusBar";
 import Filters from './Filters';
+import TaskProgress from './TaskProgress';
 
 // import {tasks} from "../constants/tasks"
 
@@ -101,7 +102,7 @@ function App() {
       <h2 className='count'>Number of Tasks: {tasks.length}</h2>
       {progressView === "off"? <Filters onFilterChange={handleFilterChange} />: null}
       {/* <Filters onFilterChange={handleFilterChange} /> */}
-      {progressView==="off"? <TaskList tasks={tasks} onFavorite={handleFavorite} onDelete={handleDelete} onComplete={handleComplete} onAddTask={handleAddTask} onEditTask={handleEditTask} />: null}
+      {progressView==="off"? <TaskList tasks={tasks} onFavorite={handleFavorite} onDelete={handleDelete} onComplete={handleComplete} onAddTask={handleAddTask} onEditTask={handleEditTask} />: <TaskProgress tasks={tasks}/>}
     </div>
   );
 }
