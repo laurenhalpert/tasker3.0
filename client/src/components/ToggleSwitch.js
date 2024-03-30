@@ -9,7 +9,7 @@ function ToggleSwitch({ progressView, onToggle }){
 
     return(
         <span className="toggleSwitch">
-            <label id="label" htmlFor="switchLabel">List View</label>
+            <label id="label" htmlFor="switchLabel">{progressView==="off"? "List View On": "Progress View On"}</label>
             <label id="switchLabel" className="switch">
                 <input id="switch" type="checkbox" onChange={handleChange} value={progressView} />
                 <span className="slider round"/>

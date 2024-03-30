@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Tasker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary
 
-## Available Scripts
+Tasker is a React app with a Python backend that allows the end user to track their todo list
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### List View/Progress View
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+There are two view options for the end user that they can toggle between: List View and Progress View.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In List View, the end user sees their todo tasks in list form. They can view all information about the listed tasks all at once (favorited?, task name, category, and status). This is the default view.
 
-### `npm test`
+In Progress View, the end user sees their todo tasks in columns based on their status category. This view offers the end user a quick look at the progress status of their todo tasks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Progress Status Bar
 
-### `npm run build`
+Available in both List View and Progress View.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Visually shows the end user the percentage of the todo tasks they have completed. The bar updates as tasks are deleted, added, or updated to maintain accuracy.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Task Count
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Available in both List View and Progress View.
 
-### `npm run eject`
+Provides quick info for the end user to know how many todo tasks they have in total. The count updates as tasks are added or deleted.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Filters
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Available only in List View.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+An end user can select one or more filters to filter their todo tasks. If "All" is selected or no filters are selected, all todo tasks will be shown.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Favorite Button
 
-## Learn More
+Available only in List View.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+An empty star button demonstrates that the corresponding task is not favorited. Once clicked, the task is favorited and the star button fills in. To un-favorite a task, the user can click on a solid-fill star button next to the corresponding task. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Checkmark Button
 
-### Code Splitting
+Available only in List View.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Once clicked, it changes the status of the corresponding task to "Completed" and the task progress status bar will update.
 
-### Analyzing the Bundle Size
+### Pencil Button
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Available only in List View.
 
-### Making a Progressive Web App
+Once clicked, the task form appears at the bottom of the page populated with the current task name, category, and status. The end user can then update 0 or more of the inputs and hit submit to update the attributes of the task.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Trashcan Button
 
-### Advanced Configuration
+Available only in List View.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Once clicked, the task will be removed from the list of todo tasks, the progress status bar will update, and the task count will update.
 
-### Deployment
+### Create New Task Button
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Available only in List View.
 
-### `npm run build` fails to minify
+Once clicked, the new task form will appear at the bottom of the page. The end user then fills in the form, hits submit, and the task is added to the list of todo tasks, the progress status bar is updated, and the task count is updated.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Getting Started
+
+### Start server
+
+In the flask_server directory, run:
+
+`python app.py`
+
+### Seed database
+
+In the flask_server directory, run:
+
+`python seed.py`
+
+### Install dependencies
+
+In the client directory, run:
+
+`pnpm install`
+
+### Start client
+
+In the client directory, run:
+
+`npm start`
+
+
