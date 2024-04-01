@@ -17,6 +17,13 @@ function App() {
   const [progressView, setProgressView] = useState("off")
 
   useEffect(()=>{
+    // What happens if your API is served somewhere else or on a different port?
+    // It's useful to save your API url as an environment variable
+    // So you would set up your environment variable like:
+    // API_URL=http://127.0.0.1:5000/api/
+    // And in your code, you would reference it like:
+    // {process.env.API_URL}
+    // https://create-react-app.dev/docs/adding-custom-environment-variables/
     fetch("http://127.0.0.1:5000/api/")
     .then(r=>r.json())
     .then((tasks)=>{
